@@ -1,0 +1,96 @@
+/* Crimson Signal design reminder: the signal rail is a structural page spine; maroon denotes active state only. */
+
+.section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: clamp(1.28rem, 2.39vw, 3rem);
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 3%, rgba(163, 32, 53, .5) 19%, rgba(244, 240, 232, .14) 78%, transparent 98%);
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: calc(clamp(1.28rem, 2.39vw, 3rem) - 4px);
+  top: clamp(4rem, 7vw, 5.75rem);
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--signal-bright);
+  background: var(--ink);
+  box-shadow: 0 0 0 5px rgba(13, 12, 13, .87);
+}
+
+.section-inner { position: relative; }
+.section-heading { position: relative; }
+
+.section-spine {
+  position: absolute;
+  left: clamp(-8rem, -6.55vw, -5.35rem);
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  color: rgba(244, 240, 232, .58);
+  font: .55rem "IBM Plex Mono", monospace;
+  letter-spacing: .1em;
+}
+
+.section-spine i {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--signal-bright);
+  box-shadow: 0 0 0 4px rgba(163, 32, 53, .14), 0 0 14px rgba(215, 58, 83, .5);
+}
+
+.section-spine span { writing-mode: vertical-rl; transform: rotate(180deg); }
+.security-grid > div:first-child { position: relative; }
+.security-spine, .contact-spine { left: clamp(-8rem, -6.55vw, -5.35rem); }
+
+.project-evidence {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: 1.25rem;
+  padding: .62rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: rgba(244, 240, 232, .62);
+  font: .53rem "IBM Plex Mono", monospace;
+  letter-spacing: .07em;
+}
+
+.project-evidence i {
+  min-width: 28px;
+  height: 1px;
+  background: repeating-linear-gradient(to right, var(--signal) 0 4px, transparent 4px 7px);
+}
+
+.project-evidence.compact { justify-content: space-between; font-size: .5rem; }
+
+.credential-stamp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.credential-stamp small {
+  color: var(--muted);
+  font: .48rem "IBM Plex Mono", monospace;
+  letter-spacing: .07em;
+}
+
+.footer-brand { display: flex; align-items: flex-start; gap: .9rem; }
+.footer-brand img { width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(163, 32, 53, .3)); }
+
+@media (max-width: 830px) {
+  .section-spine, .section::before, .section::after { display: none; }
+}

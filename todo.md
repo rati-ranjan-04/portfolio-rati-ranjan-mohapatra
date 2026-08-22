@@ -2,3 +2,7 @@
 - [x] Add Gita Mitra with its live application link.
 - [x] Add the supplied live deployment link to Financial Fraud Detection System.
 - [x] Verify the responsive project section and sync the completed update to GitHub.
+- [x] Upload and incorporate the supplied professional portrait on the main portfolio page.
+- [x] Replace email links with contactratiranjanmohapatra@gmail.com.
+- [x] Replace LinkedIn links with https://www.linkedin.com/in/rati-ranjan-mohapatra.
+- [x] Verify the footer contact destinations and synchronize the update to GitHub.

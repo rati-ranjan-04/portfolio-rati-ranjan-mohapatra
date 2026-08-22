@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useEffect, useState } from "react";
+import { toast } from "sonner";
 import {
   certifications,
   coursework,
@@ -145,15 +146,25 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
   };
 
+  const copyEmailContent = async (content: string, message: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      toast.success(message);
+    } catch {
+      window.prompt("Copy this email content:", content);
+    }
+  };
+
   const sendMessage = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     const data = new FormData(event.currentTarget);
     const name = data.get("name")?.toString() ?? "";
     const email = data.get("email")?.toString() ?? "";
     const message = data.get("message")?.toString() ?? "";
-    const subject = encodeURIComponent(`Portfolio enquiry from ${name || "a visitor"}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:contactratiranjanmohapatra@gmail.com?subject=${subject}&body=${body}`;
+    const emailDraft = `To: contactratiranjanmohapatra@gmail.com\nSubject: Portfolio enquiry from ${name || "a visitor"}\n\nName: ${name}\nEmail: ${email}\n\n${message}`;
+    void copyEmailContent(emailDraft, "Email draft copied. Paste it into your email app.");
+    form.reset();
   };
 
   return (
@@ -201,7 +212,7 @@ export default function Home() {
               <button className="primary-button" onClick={() => moveTo("projects")}>VIEW MY PROJECTS <ArrowDownRight size={15} /></button>
               <button className="secondary-button" onClick={() => moveTo("contact")}>LET&apos;S CONNECT <ArrowUpRight size={15} /></button>
             </div>
-            <a className="resume-link" href="mailto:contactratiranjanmohapatra@gmail.com?subject=Resume%20Request%20for%20Rati%20Ranjan%20Mohapatra"><Download size={14} /> REQUEST RESUME</a>
+            <button className="resume-link" type="button" onClick={() => void copyEmailContent("To: contactratiranjanmohapatra@gmail.com\nSubject: Resume Request for Rati Ranjan Mohapatra", "Resume request email draft copied.")}><Download size={14} /> REQUEST RESUME</button>
             <div className="availability"><i />Open to Internship &amp; Entry-Level Opportunities</div>
           </motion.div>
           <motion.div className="hero-console" initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.76, delay: 0.13, ease: [0.23, 1, 0.32, 1] }}>
@@ -309,11 +320,11 @@ export default function Home() {
         </section>
 
         <section id="contact" className="section contact">
-          <div className="section-inner contact-layout"><div><div className="section-spine contact-spine" aria-hidden="true"><i /><span>10</span></div><div className="eyebrow-row"><span className="section-index">/10</span><span>LET&apos;S CONNECT</span></div><p className="contact-statement">Have an opportunity, project or idea? <em>Let&apos;s build something useful.</em></p><div className="contact-details"><a className="contact-detail" href="mailto:contactratiranjanmohapatra@gmail.com"><Mail /><span>EMAIL</span>contactratiranjanmohapatra@gmail.com</a><a className="contact-detail" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rati-ranjan-mohapatra"><Linkedin /><span>LINKEDIN</span>linkedin.com/in/rati-ranjan-mohapatra</a><a className="contact-detail" target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04"><Github /><span>GITHUB</span>github.com/rati-ranjan-04</a><div className="contact-detail"><MapPin /><span>LOCATION</span>Cuttack, Odisha, India</div><div className="contact-detail"><Activity /><span>AVAILABILITY</span>Internship &amp; Entry-Level Opportunities</div></div></div><form className="contact-form" onSubmit={sendMessage}><label className="form-label" htmlFor="name">NAME</label><input className="form-field" id="name" name="name" required placeholder="Your name" /><label className="form-label" htmlFor="email">EMAIL</label><input className="form-field" id="email" name="email" type="email" required placeholder="you@example.com" /><label className="form-label" htmlFor="message">MESSAGE</label><textarea className="form-field" id="message" name="message" required placeholder="Tell me a little about the opportunity or idea." /><button className="primary-button send-button" type="submit">SEND MESSAGE <Send size={15} /></button></form></div>
+          <div className="section-inner contact-layout"><div><div className="section-spine contact-spine" aria-hidden="true"><i /><span>10</span></div><div className="eyebrow-row"><span className="section-index">/10</span><span>LET&apos;S CONNECT</span></div><p className="contact-statement">Have an opportunity, project or idea? <em>Let&apos;s build something useful.</em></p><div className="contact-details"><button className="contact-detail contact-button" type="button" onClick={() => void copyEmailContent("contactratiranjanmohapatra@gmail.com", "Email address copied.")}><Mail /><span>EMAIL</span>contactratiranjanmohapatra@gmail.com</button><a className="contact-detail" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rati-ranjan-mohapatra"><Linkedin /><span>LINKEDIN</span>linkedin.com/in/rati-ranjan-mohapatra</a><a className="contact-detail" target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04"><Github /><span>GITHUB</span>github.com/rati-ranjan-04</a><div className="contact-detail"><MapPin /><span>LOCATION</span>Cuttack, Odisha, India</div><div className="contact-detail"><Activity /><span>AVAILABILITY</span>Internship &amp; Entry-Level Opportunities</div></div></div><form className="contact-form" onSubmit={sendMessage}><label className="form-label" htmlFor="name">NAME</label><input className="form-field" id="name" name="name" required placeholder="Your name" /><label className="form-label" htmlFor="email">EMAIL</label><input className="form-field" id="email" name="email" type="email" required placeholder="you@example.com" /><label className="form-label" htmlFor="message">MESSAGE</label><textarea className="form-field" id="message" name="message" required placeholder="Tell me a little about the opportunity or idea." /><button className="primary-button send-button" type="submit">COPY EMAIL DRAFT <Send size={15} /></button></form></div>
         </section>
       </main>
 
-      <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div><div className="footer-links"><a target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04">GITHUB</a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rati-ranjan-mohapatra">LINKEDIN</a><a href="mailto:contactratiranjanmohapatra@gmail.com">EMAIL</a></div></div></footer>
+      <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div><div className="footer-links"><a target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04">GITHUB</a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rati-ranjan-mohapatra">LINKEDIN</a><button type="button" onClick={() => void copyEmailContent("contactratiranjanmohapatra@gmail.com", "Email address copied.")}>EMAIL</button></div></div></footer>
 
       <AnimatePresence>
         {showBackToTop ? (

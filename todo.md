@@ -12,3 +12,5 @@
 - [x] Verify the refined navigation behavior and synchronize it to GitHub.
 - [x] Add a scroll-triggered Back to Top button with smooth return behavior.
 - [x] Verify the Back to Top control and synchronize the update to GitHub.
+- [x] Replace unsupported mailto navigation with a preview-safe email contact interaction.
+- [x] Verify the corrected email interaction and synchronize the repair to GitHub.

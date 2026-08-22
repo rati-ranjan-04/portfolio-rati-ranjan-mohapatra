@@ -238,6 +238,15 @@ export const certifications = [
   "AI Tools Workshop — Be10x",
 ];
 
+export const workshops = [
+  {
+    title: "AI/ML for Geodata Analysis",
+    provider: "Indian Institute of Remote Sensing (IIRS) — ISRO",
+    duration: "13-DAY WORKSHOP PARTICIPATION",
+    description: "Participated in an applied learning workshop focused on AI/ML concepts for geodata analysis.",
+  },
+];
+
 export const coursework = [
   "Machine Learning",
   "Database Management Systems",

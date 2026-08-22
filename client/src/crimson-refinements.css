@@ -34,6 +34,22 @@
 .resume-hero-button:hover { transform: translateY(-2px); border-color: var(--signal-bright); color: var(--paper); background: rgba(163, 32, 53, .22); }
 .resume-hero-button:active { transform: scale(.97); }
 
+.workshop-records { margin-top: 1.35rem; }
+.workshop-record {
+  display: grid;
+  grid-template-columns: minmax(180px, .85fr) 2fr;
+  gap: 1.6rem;
+  align-items: start;
+  padding: 1.35rem;
+  border: 1px solid rgba(224, 193, 137, .38);
+  background: linear-gradient(110deg, rgba(224, 193, 137, .08), rgba(16, 14, 15, .35));
+}
+.workshop-mark { display: grid; gap: .55rem; color: #e9c680; }
+.workshop-mark small, .workshop-provider { margin: 0; color: #e9c680; font: .62rem "IBM Plex Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
+.workshop-record h3 { margin: .35rem 0 .45rem; color: var(--paper); font: 600 1.25rem "DM Sans", sans-serif; }
+.workshop-description { margin: 0; color: var(--muted-ink); max-width: 62ch; line-height: 1.65; }
+@media (max-width: 630px) { .workshop-record { grid-template-columns: 1fr; gap: .85rem; } }
+
 .back-to-top {
   position: fixed;
   z-index: 38;

@@ -24,3 +24,6 @@
 - [x] Add a small "ॐ माँ" mark to the portfolio header and synchronize the update to GitHub.
 - [x] Package all portfolio images for external Vercel deployment instead of Manus-only storage paths.
 - [x] Update image references, verify the production build, and synchronize the repair to GitHub.
+- [x] Add the 13-day AI/ML for Geodata Analysis workshop participation at IIRS–ISRO to the learning record.
+- [x] Verify the workshop display and synchronize the update to GitHub.
+- [x] Confirm the IIRS–ISRO workshop appears in the published portfolio and GitHub code.

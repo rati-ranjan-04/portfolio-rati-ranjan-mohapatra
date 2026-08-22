@@ -49,6 +49,7 @@ import {
   projects,
   skills,
   type Project,
+  workshops,
 } from "@/data/portfolio";
 
 const skillIcons = [Code2, BrainCircuit, Layers3, ShieldCheck, Database];
@@ -311,7 +312,7 @@ export default function Home() {
         </section>
 
         <section id="certifications" className="section certifications">
-          <div className="section-inner"><SectionHeading index="07" eyebrow="CERTIFICATIONS" title="A continuing record of focused learning." /><div className="cert-grid">{certifications.map((certification, index) => <motion.article className="cert-card" key={certification} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: (index % 3) * .04, duration: .38 }}><div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>VERIFIED LEARNING / 0{index + 1}</small></div><span>{certification}</span></motion.article>)}</div></div>
+          <div className="section-inner"><SectionHeading index="07" eyebrow="CERTIFICATIONS &amp; WORKSHOPS" title="A continuing record of focused learning." /><div className="cert-grid">{certifications.map((certification, index) => <motion.article className="cert-card" key={certification} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: (index % 3) * .04, duration: .38 }}><div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>VERIFIED LEARNING / 0{index + 1}</small></div><span>{certification}</span></motion.article>)}</div><div className="workshop-records">{workshops.map((workshop) => <motion.article className="workshop-record" key={workshop.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45 }}><div className="workshop-mark"><GraduationCap size={20} strokeWidth={1.45} /><small>{workshop.duration}</small></div><div><p className="workshop-provider">{workshop.provider}</p><h3>{workshop.title}</h3><p className="workshop-description">{workshop.description}</p></div></motion.article>)}</div></div>
         </section>
 
         <section className="section github-section" aria-labelledby="github-heading">

@@ -14,3 +14,5 @@
 - [x] Verify the Back to Top control and synchronize the update to GitHub.
 - [x] Replace unsupported mailto navigation with a preview-safe email contact interaction.
 - [x] Verify the corrected email interaction and synchronize the repair to GitHub.
+- [x] Add a WhatsApp quick-message button using the user's confirmed WhatsApp number.
+- [x] Verify the WhatsApp contact interaction and synchronize the update to GitHub.

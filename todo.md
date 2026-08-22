@@ -6,3 +6,5 @@
 - [x] Replace email links with contactratiranjanmohapatra@gmail.com.
 - [x] Replace LinkedIn links with https://www.linkedin.com/in/rati-ranjan-mohapatra.
 - [x] Verify the footer contact destinations and synchronize the update to GitHub.
+- [x] Repair the portrait asset URL so it renders in the mobile portfolio preview.
+- [x] Verify the repaired portrait on both desktop and mobile and synchronize the fix to GitHub.

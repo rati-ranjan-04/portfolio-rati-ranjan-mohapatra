@@ -206,7 +206,14 @@ export default function Home() {
               </div>
               <div className="about-side">
                 <div className="about-profile">
-                  <img src="/manus-storage/rati-portrait-main_525e126b.jpg" alt="Rati Ranjan Mohapatra" />
+                  <img
+                    src="/manus-storage/rati-portrait-main_525e126b.jpg?v=20260822-portrait-fix"
+                    alt="Rati Ranjan Mohapatra"
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = "/manus-storage/rati-profile_090e5858.webp";
+                    }}
+                  />
                   <div className="about-profile-label"><span>IDENTITY / 01</span><b>RATI RANJAN MOHAPATRA</b></div>
                 </div>
                 <div className="fact-stack">

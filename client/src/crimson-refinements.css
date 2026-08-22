@@ -2,6 +2,21 @@
 
 .hero, .section { scroll-margin-top: 90px; }
 
+.devotional-mark {
+  position: absolute;
+  top: .33rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e9c680;
+  font: 600 .69rem/1.1 Georgia, "Noto Serif Devanagari", serif;
+  letter-spacing: .08em;
+  text-shadow: 0 0 14px rgba(233, 198, 128, .34);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 830px) { .devotional-mark { top: .28rem; font-size: .62rem; } }
+
 .resume-hero-button {
   display: inline-flex;
   align-items: center;

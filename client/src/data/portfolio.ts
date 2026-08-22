@@ -200,6 +200,7 @@ export const projects: Project[] = [
     technologies: ["Live Application"],
     features: ["Live web application"],
     live: "https://gitamitra-fawn.vercel.app/",
+    image: "/manus-storage/gita-mitra-ai-art_46975f59.png",
     kind: "gita",
   },
 ];

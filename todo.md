@@ -20,3 +20,5 @@
 - [x] Verify the refined footer and synchronize the update to GitHub.
 - [x] Upload the supplied resume as a downloadable portfolio asset.
 - [x] Add a prominent hero Download Resume control and synchronize the update to GitHub.
+- [x] Upload the supplied Gita Mitra visual and add it to the Gita Mitra project card.
+- [x] Add a small "ॐ माँ" mark to the portfolio header and synchronize the update to GitHub.

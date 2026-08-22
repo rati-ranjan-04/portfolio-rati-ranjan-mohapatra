@@ -111,6 +111,7 @@ function GitaMitraVisual() {
 function ProjectVisual({ project }: { project: Project }) {
   if (project.kind === "connect") return <ConnectFourVisual />;
   if (project.kind === "mail") return <MailGuardVisual />;
+  if (project.kind === "gita" && project.image) return <img src={project.image} alt="Gita Mitra AI project cover" />;
   if (project.kind === "gita") return <GitaMitraVisual />;
   return <img src={project.image} alt="" />;
 }
@@ -175,6 +176,7 @@ export default function Home() {
           <img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" />
           <span>RATI / RANJAN / 2026</span>
         </button>
+        <div className="devotional-mark" aria-label="Om Maa">ॐ माँ</div>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map(([label, id]) => (
             <button key={id} onClick={() => moveTo(id)}>{label}</button>

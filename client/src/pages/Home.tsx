@@ -212,8 +212,8 @@ export default function Home() {
             <div className="hero-actions">
               <button className="primary-button" onClick={() => moveTo("projects")}>VIEW MY PROJECTS <ArrowDownRight size={15} /></button>
               <button className="secondary-button" onClick={() => moveTo("contact")}>LET&apos;S CONNECT <ArrowUpRight size={15} /></button>
+              <a className="resume-hero-button" href="/manus-storage/Rati_Ranjan_Mohapatra_Resume_9a381d6f.docx" download="Rati_Ranjan_Mohapatra_Resume.docx"><Download size={15} /> DOWNLOAD RESUME</a>
             </div>
-            <button className="resume-link" type="button" onClick={() => void copyEmailContent("To: contactratiranjanmohapatra@gmail.com\nSubject: Resume Request for Rati Ranjan Mohapatra", "Resume request email draft copied.")}><Download size={14} /> REQUEST RESUME</button>
             <div className="availability"><i />Open to Internship &amp; Entry-Level Opportunities</div>
           </motion.div>
           <motion.div className="hero-console" initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.76, delay: 0.13, ease: [0.23, 1, 0.32, 1] }}>

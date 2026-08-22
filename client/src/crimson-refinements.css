@@ -2,6 +2,23 @@
 
 .hero, .section { scroll-margin-top: 90px; }
 
+.resume-hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .52rem;
+  padding: .92rem 1.05rem;
+  border: 1px solid rgba(240, 183, 193, .62);
+  color: var(--signal-pale);
+  background: rgba(163, 32, 53, .08);
+  text-decoration: none;
+  font: 600 .72rem "IBM Plex Mono", monospace;
+  letter-spacing: .065em;
+  transition: transform 170ms cubic-bezier(.23, 1, .32, 1), border-color 170ms ease, background 170ms ease, color 170ms ease;
+}
+
+.resume-hero-button:hover { transform: translateY(-2px); border-color: var(--signal-bright); color: var(--paper); background: rgba(163, 32, 53, .22); }
+.resume-hero-button:active { transform: scale(.97); }
+
 .back-to-top {
   position: fixed;
   z-index: 38;

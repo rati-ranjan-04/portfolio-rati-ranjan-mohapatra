@@ -18,3 +18,5 @@
 - [x] Verify the WhatsApp contact interaction and synchronize the update to GitHub.
 - [x] Remove the redundant GitHub, LinkedIn, and email links from the footer.
 - [x] Verify the refined footer and synchronize the update to GitHub.
+- [x] Upload the supplied resume as a downloadable portfolio asset.
+- [x] Add a prominent hero Download Resume control and synchronize the update to GitHub.

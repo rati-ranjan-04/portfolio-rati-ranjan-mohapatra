@@ -22,3 +22,5 @@
 - [x] Add a prominent hero Download Resume control and synchronize the update to GitHub.
 - [x] Upload the supplied Gita Mitra visual and add it to the Gita Mitra project card.
 - [x] Add a small "ॐ माँ" mark to the portfolio header and synchronize the update to GitHub.
+- [x] Package all portfolio images for external Vercel deployment instead of Manus-only storage paths.
+- [x] Update image references, verify the production build, and synchronize the repair to GitHub.

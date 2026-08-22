@@ -173,7 +173,7 @@ export default function Home() {
     <div className="portfolio-shell">
       <header className={`top-bar ${scrolled ? "scrolled" : ""}`}>
         <button className="brand-lockup" onClick={() => moveTo("home")} aria-label="Go to home">
-          <img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" />
+          <img src="/deploy-assets/rati-signal-mark.webp" alt="" />
           <span>RATI / RANJAN / 2026</span>
         </button>
         <div className="devotional-mark" aria-label="Om Maa">ॐ माँ</div>
@@ -214,7 +214,7 @@ export default function Home() {
             <div className="hero-actions">
               <button className="primary-button" onClick={() => moveTo("projects")}>VIEW MY PROJECTS <ArrowDownRight size={15} /></button>
               <button className="secondary-button" onClick={() => moveTo("contact")}>LET&apos;S CONNECT <ArrowUpRight size={15} /></button>
-              <a className="resume-hero-button" href="/manus-storage/Rati_Ranjan_Mohapatra_Resume_9a381d6f.docx" download="Rati_Ranjan_Mohapatra_Resume.docx"><Download size={15} /> DOWNLOAD RESUME</a>
+              <a className="resume-hero-button" href="/deploy-assets/Rati_Ranjan_Mohapatra_Resume.docx" download="Rati_Ranjan_Mohapatra_Resume.docx"><Download size={15} /> DOWNLOAD RESUME</a>
             </div>
             <div className="availability"><i />Open to Internship &amp; Entry-Level Opportunities</div>
           </motion.div>
@@ -242,11 +242,11 @@ export default function Home() {
               <div className="about-side">
                 <div className="about-profile">
                   <img
-                    src="/manus-storage/rati-portrait-main_525e126b.jpg?v=20260822-portrait-fix"
+                    src="/deploy-assets/rati-portrait-main.jpg"
                     alt="Rati Ranjan Mohapatra"
                     onError={(event) => {
                       event.currentTarget.onerror = null;
-                      event.currentTarget.src = "/manus-storage/rati-profile_090e5858.webp";
+                      event.currentTarget.src = "/deploy-assets/rati-profile.webp";
                     }}
                   />
                   <div className="about-profile-label"><span>IDENTITY / 01</span><b>RATI RANJAN MOHAPATRA</b></div>
@@ -303,7 +303,7 @@ export default function Home() {
         </section>
 
         <section className="section security" aria-labelledby="security-heading">
-          <div className="section-inner security-grid"><div><div className="section-spine security-spine" aria-hidden="true"><i /><span>05</span></div><div className="eyebrow-row"><span className="section-index">/05</span><span>SECURITY MINDSET</span></div><h2 id="security-heading" className="security-statement">ANALYSE. DETECT. INVESTIGATE.<span>SECURE.</span></h2><div className="security-focus">{["Network Security", "Wireshark", "Packet Analysis", "Digital Forensics", "Incident Investigation", "Ethical Hacking Fundamentals", "Threat Awareness", "Secure Computing"].map((item) => <span className="tag" key={item}>{item}</span>)}</div></div><div className="security-network"><svg className="network-svg" viewBox="0 0 600 430" aria-hidden="true"><line x1="100" y1="105" x2="330" y2="90" /><line x1="100" y1="105" x2="175" y2="300" /><line x1="330" y1="90" x2="440" y2="275" /><line x1="175" y1="300" x2="440" y2="275" /><line x1="330" y1="90" x2="520" y2="165" /><circle cx="100" cy="105" r="6" /><circle cx="330" cy="90" r="6" /><circle cx="175" cy="300" r="6" /><circle cx="440" cy="275" r="7" /><circle cx="520" cy="165" r="5" /><image href="/manus-storage/rati-signal-mark_2894b6a5.png" x="282" y="137" width="88" height="88" opacity=".75" /></svg><span className="network-label one">CLIENT</span><span className="network-label two">NETWORK</span><span className="network-label three">THREAT DETECTION</span><span className="network-label four">PACKETS</span><div className="network-route">CLIENT → NETWORK → PACKETS → ANALYSIS → THREAT DETECTION</div></div></div>
+          <div className="section-inner security-grid"><div><div className="section-spine security-spine" aria-hidden="true"><i /><span>05</span></div><div className="eyebrow-row"><span className="section-index">/05</span><span>SECURITY MINDSET</span></div><h2 id="security-heading" className="security-statement">ANALYSE. DETECT. INVESTIGATE.<span>SECURE.</span></h2><div className="security-focus">{["Network Security", "Wireshark", "Packet Analysis", "Digital Forensics", "Incident Investigation", "Ethical Hacking Fundamentals", "Threat Awareness", "Secure Computing"].map((item) => <span className="tag" key={item}>{item}</span>)}</div></div><div className="security-network"><svg className="network-svg" viewBox="0 0 600 430" aria-hidden="true"><line x1="100" y1="105" x2="330" y2="90" /><line x1="100" y1="105" x2="175" y2="300" /><line x1="330" y1="90" x2="440" y2="275" /><line x1="175" y1="300" x2="440" y2="275" /><line x1="330" y1="90" x2="520" y2="165" /><circle cx="100" cy="105" r="6" /><circle cx="330" cy="90" r="6" /><circle cx="175" cy="300" r="6" /><circle cx="440" cy="275" r="7" /><circle cx="520" cy="165" r="5" /><image href="/deploy-assets/rati-signal-mark.webp" x="282" y="137" width="88" height="88" opacity=".75" /></svg><span className="network-label one">CLIENT</span><span className="network-label two">NETWORK</span><span className="network-label three">THREAT DETECTION</span><span className="network-label four">PACKETS</span><div className="network-route">CLIENT → NETWORK → PACKETS → ANALYSIS → THREAT DETECTION</div></div></div>
         </section>
 
         <section className="section" aria-labelledby="education-heading">
@@ -327,7 +327,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div></div></footer>
+      <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/deploy-assets/rati-signal-mark.webp" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div></div></footer>
 
       <AnimatePresence>
         {showBackToTop ? (

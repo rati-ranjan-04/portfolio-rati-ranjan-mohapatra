@@ -138,7 +138,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/rati-ranjan-04/fraud-detection-financial-transactions",
     live: "https://fraud-detection-financial-transactions.onrender.com/",
-    image: "/manus-storage/fraud-detection-visual_f26253d2.png",
+    image: "/deploy-assets/fraud-detection-visual.webp",
     kind: "fraud",
   },
   {
@@ -158,7 +158,7 @@ export const projects: Project[] = [
       "Reproducible execution",
     ],
     github: "https://github.com/rati-ranjan-04/HOUSING-PROJECT-COST-ESTIMATOR",
-    image: "/manus-storage/estimator-visual_7749eaad.png",
+    image: "/deploy-assets/estimator-visual.webp",
     kind: "estimator",
   },
   {
@@ -200,7 +200,7 @@ export const projects: Project[] = [
     technologies: ["Live Application"],
     features: ["Live web application"],
     live: "https://gitamitra-fawn.vercel.app/",
-    image: "/manus-storage/gita-mitra-ai-art_46975f59.png",
+    image: "/deploy-assets/gita-mitra-ai-art.webp",
     kind: "gita",
   },
 ];

@@ -57,7 +57,18 @@ const terminalLines = [
 ];
 
 function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const header = document.querySelector(".top-bar") as HTMLElement | null;
+  const offset = (header?.offsetHeight ?? 76) + 14;
+  const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  window.scrollTo({
+    top: Math.max(0, targetTop),
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
 }
 
 function ConnectFourVisual() {

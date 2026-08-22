@@ -1,5 +1,7 @@
 /* Crimson Signal design reminder: the signal rail is a structural page spine; maroon denotes active state only. */
 
+.hero, .section { scroll-margin-top: 90px; }
+
 .section::before {
   content: "";
   position: absolute;

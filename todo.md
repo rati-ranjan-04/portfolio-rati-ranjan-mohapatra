@@ -8,3 +8,5 @@
 - [x] Verify the footer contact destinations and synchronize the update to GitHub.
 - [x] Repair the portrait asset URL so it renders in the mobile portfolio preview.
 - [x] Verify the repaired portrait on both desktop and mobile and synchronize the fix to GitHub.
+- [x] Improve smooth scrolling and fixed-header offsets for all navigation menu links.
+- [x] Verify the refined navigation behavior and synchronize it to GitHub.

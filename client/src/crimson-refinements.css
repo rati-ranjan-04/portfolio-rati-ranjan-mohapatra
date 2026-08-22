@@ -121,6 +121,7 @@
 
 .footer-brand { display: flex; align-items: flex-start; gap: .9rem; }
 .footer-brand img { width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(163, 32, 53, .3)); }
+.footer .footer-inner { grid-template-columns: 1fr; }
 
 .about-side { display: grid; gap: .85rem; }
 

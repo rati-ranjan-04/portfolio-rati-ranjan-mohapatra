@@ -325,7 +325,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div><div className="footer-links"><a target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04">GITHUB</a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rati-ranjan-mohapatra">LINKEDIN</a><button type="button" onClick={() => void copyEmailContent("contactratiranjanmohapatra@gmail.com", "Email address copied.")}>EMAIL</button></div></div></footer>
+      <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div></div></footer>
 
       <AnimatePresence>
         {showBackToTop ? (

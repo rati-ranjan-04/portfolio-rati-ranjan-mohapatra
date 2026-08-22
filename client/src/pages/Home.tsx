@@ -75,8 +75,29 @@ function ConnectFourVisual() {
   );
 }
 
+function MailGuardVisual() {
+  return (
+    <div className="mail-guard-visual" aria-label="Mail Guard project visual">
+      <div className="mail-icon"><i /><i /></div>
+      <div className="mail-guard-copy"><span>MAIL GUARD</span><b>SPAM FILTER</b></div>
+      <div className="mail-signal"><i /><i /><i /><i /><i /></div>
+    </div>
+  );
+}
+
+function GitaMitraVisual() {
+  return (
+    <div className="gita-visual" aria-label="Gita Mitra project visual">
+      <span className="gita-glyph">G</span>
+      <div><span>GITA</span><b>MITRA</b><small>LIVE WEB PROJECT</small></div>
+    </div>
+  );
+}
+
 function ProjectVisual({ project }: { project: Project }) {
   if (project.kind === "connect") return <ConnectFourVisual />;
+  if (project.kind === "mail") return <MailGuardVisual />;
+  if (project.kind === "gita") return <GitaMitraVisual />;
   return <img src={project.image} alt="" />;
 }
 
@@ -225,10 +246,10 @@ export default function Home() {
           <div className="section-inner">
             <SectionHeading index="04" eyebrow="SELECTED PROJECTS" title="Real projects. Practical problems. Measurable solutions." description="A selection of AI/ML applications and Python development work, presented with the core problem and implementation focus." />
             <motion.article className="project-feature" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ duration: .58 }}>
-              <div className="project-feature-grid"><div className="project-visual"><ProjectVisual project={projects[0]} /><span className="project-index">PROJECT / 01</span></div><div className="project-copy"><p className="project-category">{projects[0].category}</p><h3>{projects[0].title}</h3><p>{projects[0].description}</p><div className="project-meta">STATUS / {projects[0].status}</div><div className="project-evidence"><span>INPUT / TRANSACTION STREAM</span><i /><span>OUTPUT / RISK EXPLANATION</span></div><div className="card-tech">{projects[0].technologies.map((tech) => <span className="tag" key={tech}>{tech}</span>)}</div><div className="project-actions"><button className="mini-button signal" onClick={() => setSelectedProject(projects[0])}>VIEW DETAILS <ChevronRight size={14} /></button><a className="mini-button" target="_blank" rel="noreferrer" href={projects[0].github}><Github size={14} /> GITHUB</a></div></div></div>
+              <div className="project-feature-grid"><div className="project-visual"><ProjectVisual project={projects[0]} /><span className="project-index">PROJECT / 01</span></div><div className="project-copy"><p className="project-category">{projects[0].category}</p><h3>{projects[0].title}</h3><p>{projects[0].description}</p><div className="project-meta">STATUS / {projects[0].status}</div><div className="project-evidence"><span>INPUT / TRANSACTION STREAM</span><i /><span>OUTPUT / RISK EXPLANATION</span></div><div className="card-tech">{projects[0].technologies.map((tech) => <span className="tag" key={tech}>{tech}</span>)}</div><div className="project-actions"><button className="mini-button signal" onClick={() => setSelectedProject(projects[0])}>VIEW DETAILS <ChevronRight size={14} /></button>{projects[0].live ? <a className="mini-button" target="_blank" rel="noreferrer" href={projects[0].live}><ExternalLink size={14} /> LIVE</a> : null}{projects[0].github ? <a className="mini-button" target="_blank" rel="noreferrer" href={projects[0].github}><Github size={14} /> GITHUB</a> : null}</div></div></div>
             </motion.article>
             <div className="project-cards">
-              {projects.slice(1).map((project, index) => <motion.article className="project-card" key={project.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} transition={{ delay: index * .08, duration: .45 }}><div className="project-visual"><ProjectVisual project={project} /><span className="project-index">PROJECT / {project.index}</span></div><div className="project-card-body"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p>{project.description}</p><div className="project-evidence compact"><span>MODEL / {project.kind === "estimator" ? "REGRESSION" : "GAME STATE"}</span><i /></div><div className="card-tech">{project.technologies.map((tech) => <span className="tag" key={tech}>{tech}</span>)}</div><div className="project-actions"><button className="mini-button signal" onClick={() => setSelectedProject(project)}>DETAILS <ChevronRight size={14} /></button><a className="mini-button" target="_blank" rel="noreferrer" href={project.github}><Github size={14} /> GITHUB</a></div></div></motion.article>)}
+              {projects.slice(1).map((project, index) => <motion.article className="project-card" key={project.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} transition={{ delay: index * .08, duration: .45 }}><div className="project-visual"><ProjectVisual project={project} /><span className="project-index">PROJECT / {project.index}</span></div><div className="project-card-body"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p>{project.description}</p><div className="project-evidence compact"><span>PROJECT / {project.live ? "LIVE" : project.kind === "estimator" ? "REGRESSION" : "GAME STATE"}</span><i /></div><div className="card-tech">{project.technologies.map((tech) => <span className="tag" key={tech}>{tech}</span>)}</div><div className="project-actions"><button className="mini-button signal" onClick={() => setSelectedProject(project)}>DETAILS <ChevronRight size={14} /></button>{project.live ? <a className="mini-button" target="_blank" rel="noreferrer" href={project.live}><ExternalLink size={14} /> LIVE</a> : null}{project.github ? <a className="mini-button" target="_blank" rel="noreferrer" href={project.github}><Github size={14} /> GITHUB</a> : null}</div></div></motion.article>)}
             </div>
           </div>
         </section>
@@ -246,7 +267,7 @@ export default function Home() {
         </section>
 
         <section className="section github-section" aria-labelledby="github-heading">
-          <div className="section-inner github-grid"><div><SectionHeading index="08" eyebrow="BUILDING IN PUBLIC" title="The work continues beyond this page." description="Explore the repositories, projects, and experiments in my public GitHub profile." /><div className="profile-command"><div className="command-url"><Terminal size={14} /> github.com/rati-ranjan-04</div><h3 id="github-heading">Rati&apos;s project ledger</h3><p>A public record of projects in fraud detection, housing-cost estimation, and Python desktop development.</p><div className="contribution" aria-label="Decorative contribution-style grid">{Array.from({ length: 144 }, (_, index) => <i key={index} />)}</div><a className="mini-button signal" style={{ marginTop: "1.2rem" }} target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04">VIEW GITHUB <ArrowUpRight size={14} /></a></div></div><div className="repo-list">{projects.map((project) => <a className="repo-link" key={project.github} target="_blank" rel="noreferrer" href={project.github}><span>{project.title}</span><small>OPEN <ExternalLink size={12} /></small></a>)}</div></div>
+          <div className="section-inner github-grid"><div><SectionHeading index="08" eyebrow="BUILDING IN PUBLIC" title="The work continues beyond this page." description="Explore the repositories, projects, and experiments in my public GitHub profile." /><div className="profile-command"><div className="command-url"><Terminal size={14} /> github.com/rati-ranjan-04</div><h3 id="github-heading">Rati&apos;s project ledger</h3><p>A public record of projects in fraud detection, housing-cost estimation, Python desktop development, and Mail Guard Spam Filter.</p><div className="contribution" aria-label="Decorative contribution-style grid">{Array.from({ length: 144 }, (_, index) => <i key={index} />)}</div><a className="mini-button signal" style={{ marginTop: "1.2rem" }} target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04">VIEW GITHUB <ArrowUpRight size={14} /></a></div></div><div className="repo-list">{projects.filter((project) => project.github).map((project) => <a className="repo-link" key={project.github} target="_blank" rel="noreferrer" href={project.github}><span>{project.title}</span><small>OPEN <ExternalLink size={12} /></small></a>)}</div></div>
         </section>
 
         <section className="section" aria-labelledby="focus-heading">
@@ -262,7 +283,7 @@ export default function Home() {
 
       <Dialog open={Boolean(selectedProject)} onOpenChange={(open) => !open && setSelectedProject(null)}>
         <DialogContent className="project-dialog">
-          {selectedProject ? <><DialogHeader><div className="dialog-kicker">PROJECT / {selectedProject.index} · {selectedProject.category}</div><DialogTitle>{selectedProject.title}</DialogTitle><DialogDescription>{selectedProject.description}</DialogDescription></DialogHeader><div className="modal-feature-list">{selectedProject.features.map((feature) => <span key={feature}>{feature}</span>)}</div><div className="project-actions"><a className="mini-button signal" target="_blank" rel="noreferrer" href={selectedProject.github}>OPEN ON GITHUB <Github size={14} /></a></div></> : null}
+          {selectedProject ? <><DialogHeader><div className="dialog-kicker">PROJECT / {selectedProject.index} · {selectedProject.category}</div><DialogTitle>{selectedProject.title}</DialogTitle><DialogDescription>{selectedProject.description}</DialogDescription></DialogHeader><div className="modal-feature-list">{selectedProject.features.map((feature) => <span key={feature}>{feature}</span>)}</div><div className="project-actions">{selectedProject.live ? <a className="mini-button signal" target="_blank" rel="noreferrer" href={selectedProject.live}>OPEN LIVE PROJECT <ExternalLink size={14} /></a> : null}{selectedProject.github ? <a className="mini-button" target="_blank" rel="noreferrer" href={selectedProject.github}>OPEN ON GITHUB <Github size={14} /></a> : null}</div></> : null}
         </DialogContent>
       </Dialog>
     </div>

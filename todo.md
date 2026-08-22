@@ -1,0 +1,4 @@
+- [x] Add Mail Guard Spam Filter with GitHub and Streamlit links.
+- [x] Add Gita Mitra with its live application link.
+- [x] Add the supplied live deployment link to Financial Fraud Detection System.
+- [x] Verify the responsive project section and sync the completed update to GitHub.

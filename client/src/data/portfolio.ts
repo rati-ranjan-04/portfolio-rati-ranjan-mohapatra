@@ -10,9 +10,10 @@ export type Project = {
   description: string;
   technologies: string[];
   features: string[];
-  github: string;
+  github?: string;
+  live?: string;
   image?: string;
-  kind: "fraud" | "estimator" | "connect";
+  kind: "fraud" | "estimator" | "connect" | "mail" | "gita";
 };
 
 export const navigation = [
@@ -136,6 +137,7 @@ export const projects: Project[] = [
       "PDF report generation",
     ],
     github: "https://github.com/rati-ranjan-04/fraud-detection-financial-transactions",
+    live: "https://fraud-detection-financial-transactions.onrender.com/",
     image: "/manus-storage/fraud-detection-visual_f26253d2.png",
     kind: "fraud",
   },
@@ -177,6 +179,28 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/rati-ranjan-04/connect-4-game",
     kind: "connect",
+  },
+  {
+    index: "04",
+    title: "Mail Guard Spam Filter",
+    category: "Spam Filtering | AI Project",
+    description:
+      "A live spam-filtering project available to explore through its deployed application and public source repository.",
+    technologies: ["Live Application", "Source Repository"],
+    features: ["Live application", "Public GitHub repository"],
+    github: "https://github.com/rati-ranjan-04/mail-guard-ai",
+    live: "https://mail-guard-spam-filter-ai.streamlit.app/",
+    kind: "mail",
+  },
+  {
+    index: "05",
+    title: "Gita Mitra",
+    category: "Live Web Project",
+    description: "A live project available for exploration through its deployed web application.",
+    technologies: ["Live Application"],
+    features: ["Live web application"],
+    live: "https://gitamitra-fawn.vercel.app/",
+    kind: "gita",
   },
 ];
 

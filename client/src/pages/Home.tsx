@@ -12,6 +12,7 @@ import {
 import {
   Activity,
   ArrowDownRight,
+  ArrowUp,
   ArrowUpRight,
   BrainCircuit,
   Braces,
@@ -114,12 +115,16 @@ function ProjectVisual({ project }: { project: Project }) {
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [terminalStep, setTerminalStep] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 18);
+    const update = () => {
+      setScrolled(window.scrollY > 18);
+      setShowBackToTop(window.scrollY > 620);
+    };
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
@@ -133,6 +138,11 @@ export default function Home() {
   const moveTo = (id: string) => {
     setMobileOpen(false);
     scrollToSection(id);
+  };
+
+  const returnToTop = () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
   };
 
   const sendMessage = (event: FormEvent<HTMLFormElement>) => {
@@ -304,6 +314,24 @@ export default function Home() {
       </main>
 
       <footer className="footer"><div className="footer-inner"><div className="footer-brand"><img src="/manus-storage/rati-signal-mark_2894b6a5.png" alt="" /><div><p className="footer-name">Rati Ranjan Mohapatra</p><p className="footer-role">AI/ML &amp; Cybersecurity Enthusiast · Building. Learning. Securing.</p><p className="footer-copy">© 2026 Rati Ranjan Mohapatra. All rights reserved.</p></div></div><div className="footer-links"><a target="_blank" rel="noreferrer" href="https://github.com/rati-ranjan-04">GITHUB</a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rati-ranjan-mohapatra">LINKEDIN</a><a href="mailto:contactratiranjanmohapatra@gmail.com">EMAIL</a></div></div></footer>
+
+      <AnimatePresence>
+        {showBackToTop ? (
+          <motion.button
+            className="back-to-top"
+            onClick={returnToTop}
+            aria-label="Back to top"
+            title="Back to top"
+            initial={{ opacity: 0, y: 14, scale: .95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 14, scale: .95 }}
+            transition={{ duration: .2, ease: [0.23, 1, 0.32, 1] }}
+          >
+            <ArrowUp size={17} strokeWidth={1.9} />
+            <span>TOP</span>
+          </motion.button>
+        ) : null}
+      </AnimatePresence>
 
       <Dialog open={Boolean(selectedProject)} onOpenChange={(open) => !open && setSelectedProject(null)}>
         <DialogContent className="project-dialog">

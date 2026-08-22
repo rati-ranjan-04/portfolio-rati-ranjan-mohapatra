@@ -10,3 +10,5 @@
 - [x] Verify the repaired portrait on both desktop and mobile and synchronize the fix to GitHub.
 - [x] Improve smooth scrolling and fixed-header offsets for all navigation menu links.
 - [x] Verify the refined navigation behavior and synchronize it to GitHub.
+- [x] Add a scroll-triggered Back to Top button with smooth return behavior.
+- [x] Verify the Back to Top control and synchronize the update to GitHub.

@@ -25,4 +25,20 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+export const certifications = mysqlTable("certifications", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  issuer: varchar("issuer", { length: 255 }),
+  date: varchar("date", { length: 100 }),
+  imageUrl: varchar("imageUrl", { length: 512 }),
+  validationUrl: varchar("validationUrl", { length: 512 }),
+  isFeatured: int("isFeatured").default(0),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  provider: varchar("provider", { length: 255 }),
+  duration: varchar("duration", { length: 100 }),
+  type: mysqlEnum("type", ["certificate", "workshop"]).default("certificate"),
+});
+
+export type Certification = typeof certifications.$inferSelect;
+export type InsertCertification = typeof certifications.$inferInsert;

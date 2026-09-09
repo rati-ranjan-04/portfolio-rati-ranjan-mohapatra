@@ -2,6 +2,7 @@
  * Crimson Signal design reminder: this page uses an asymmetric security-console narrative, data motifs, and precise maroon highlights.
  */
 import { SectionHeading } from "@/components/SectionHeading";
+import { trpc } from "@/lib/trpc";
 import {
   Dialog,
   DialogContent,
@@ -40,7 +41,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
-  certifications,
   coursework,
   education,
   experiences,
@@ -49,7 +49,6 @@ import {
   projects,
   skills,
   type Project,
-  workshops,
 } from "@/data/portfolio";
 
 const skillIcons = [Code2, BrainCircuit, Layers3, ShieldCheck, Database];
@@ -123,6 +122,7 @@ export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [terminalStep, setTerminalStep] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { data: certificationRecords = [], isLoading: certificationsLoading, isError: certificationsError } = trpc.certifications.list.useQuery();
 
   useEffect(() => {
     const update = () => {
@@ -312,7 +312,18 @@ export default function Home() {
         </section>
 
         <section id="certifications" className="section certifications">
-          <div className="section-inner"><SectionHeading index="07" eyebrow="CERTIFICATIONS &amp; WORKSHOPS" title="A continuing record of focused learning." /><div className="cert-grid">{certifications.map((certification, index) => <motion.article className="cert-card" key={certification} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: (index % 3) * .04, duration: .38 }}><div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>VERIFIED LEARNING / 0{index + 1}</small></div><span>{certification}</span></motion.article>)}</div><div className="workshop-records">{workshops.map((workshop) => <motion.article className="workshop-record" key={workshop.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45 }}><div className="workshop-mark"><GraduationCap size={20} strokeWidth={1.45} /><small>{workshop.duration}</small></div><div><p className="workshop-provider">{workshop.provider}</p><h3>{workshop.title}</h3><p className="workshop-description">{workshop.description}</p></div></motion.article>)}</div></div>
+          <div className="section-inner">
+            <SectionHeading index="07" eyebrow="CERTIFICATIONS &amp; WORKSHOPS" title="A continuing record of focused learning." description="Verified learning records, presented with the issuing organisation and supplied certificate evidence." />
+            {certificationsLoading ? <div className="cert-state">Loading verified learning records...</div> : certificationsError ? <div className="cert-state">Certification records are temporarily unavailable. Please check back shortly.</div> : certificationRecords.length === 0 ? <div className="cert-state">No certification records have been added yet.</div> : <>
+              {certificationRecords.filter((record) => Number(record.isFeatured) === 1).map((record) => <motion.article className="cert-featured" key={record.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45 }}>
+                <div className="cert-featured-image">{record.imageUrl && record.imageUrl !== "NULL" ? <img src={record.imageUrl} alt={`${record.title} certificate`} /> : <div className="cert-image-placeholder"><GraduationCap size={32} strokeWidth={1.2} /><span>CERTIFICATE EVIDENCE</span></div>}</div>
+                <div className="cert-featured-copy"><div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>FEATURED / VERIFIED LEARNING</small></div><p className="cert-provider">{record.provider || record.issuer}</p><h3>{record.title}</h3><p className="cert-description">{record.description && record.description !== "NULL" ? record.description : "Verified learning record added to the portfolio."}</p><div className="cert-meta"><span>{record.date && record.date !== "NULL" ? record.date : "DATE ON FILE"}</span><span>{record.duration && record.duration !== "NULL" ? record.duration : "VERIFIED LEARNING"}</span></div>{record.validationUrl && record.validationUrl !== "NULL" ? <a className="mini-button" target="_blank" rel="noreferrer" href={record.validationUrl}>VERIFY RECORD <ExternalLink size={13} /></a> : null}</div>
+              </motion.article>)}
+              <div className="cert-grid">{certificationRecords.filter((record) => Number(record.isFeatured) !== 1).map((record, index) => <motion.article className="cert-card" key={record.id} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: (index % 3) * .04, duration: .38 }}>
+                {record.imageUrl && record.imageUrl !== "NULL" ? <div className="cert-card-image"><img src={record.imageUrl} alt={`${record.title} certificate`} /></div> : null}<div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>{record.type === "workshop" ? "WORKSHOP" : "VERIFIED LEARNING"} / 0{index + 1}</small></div><div><span>{record.title}</span><p className="cert-card-provider">{record.provider || record.issuer}</p>{record.date && record.date !== "NULL" ? <small className="cert-card-date">COMPLETED / {record.date}</small> : null}</div>
+              </motion.article>)}</div>
+            </>}
+          </div>
         </section>
 
         <section className="section github-section" aria-labelledby="github-heading">

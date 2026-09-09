@@ -27,3 +27,8 @@
 - [x] Add the 13-day AI/ML for Geodata Analysis workshop participation at IIRS–ISRO to the learning record.
 - [x] Verify the workshop display and synchronize the update to GitHub.
 - [x] Confirm the IIRS–ISRO workshop appears in the published portfolio and GitHub code.
+- [x] Add the Cisco Ethical Hacker certificate image and completion details to its portfolio record.
+- [x] Add the Cisco Introduction to Cybersecurity certificate image and completion details to its portfolio record.
+- [x] Verify both Cisco certificate displays, keep IIRS–ISRO featured first, and synchronize the update to GitHub.
+
+New evidence received: Cisco Ethical Hacker — 06 Jun 2024; Cisco Introduction to Cybersecurity — 21 Aug 2025.

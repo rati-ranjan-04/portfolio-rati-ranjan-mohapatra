@@ -202,3 +202,5 @@ button:not(:disabled), a[href] { cursor: pointer; }
 .cert-card .credential-stamp { display: flex; align-items: center; justify-content: space-between; gap: .65rem; color: var(--muted); }
 .cert-card .credential-stamp small, .cert-featured-copy .credential-stamp small { font: .58rem "IBM Plex Mono", monospace; letter-spacing: .07em; }
 @media (max-width: 830px) { .cert-featured { grid-template-columns: 1fr; }.cert-featured-image { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }.cert-featured-image img { max-height: 390px; } }
+
+.cert-state-warning { border-color: rgba(215,58,83,.55); color: var(--signal-pale); background: rgba(163,32,53,.06); }

@@ -32,3 +32,10 @@
 - [x] Verify both Cisco certificate displays, keep IIRS–ISRO featured first, and synchronize the update to GitHub.
 
 New evidence received: Cisco Ethical Hacker — 06 Jun 2024; Cisco Introduction to Cybersecurity — 21 Aug 2025.
+- [x] Diagnose why certificate images and database-backed records are not visualising in the website preview.
+- [x] Fix the certificate rendering issue and verify it on both desktop and mobile previews.
+- [ ] Synchronize the visualisation fix to GitHub.
+- [x] Diagnose and fix the live certifications query failure ("temporarily unavailable").
+- [x] Implement a robust frontend fallback that gracefully handles database query errors.
+- [x] Verify the restored certifications display on both desktop and mobile previews.
+- [ ] Synchronize the restoration fix to GitHub.

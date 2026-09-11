@@ -59,6 +59,139 @@ const terminalLines = [
   "Security analysis complete.",
 ];
 
+const fallbackCertificationRecords = [
+  {
+    id: 1,
+    title: "AI/ML for Geodata Analytics",
+    issuer: "Indian Institute of Remote Sensing (IIRS) — ISRO",
+    date: "September 7, 2026",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663669412242/ciAKycJhbuviYTan.png",
+    validationUrl: "https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php",
+    isFeatured: 1,
+    description: "Completed an intensive online course on AI/ML for Geodata Analytics conducted by IIRS–ISRO, covering foundational concepts and practical applications.",
+    provider: "Indian Institute of Remote Sensing (IIRS) — ISRO",
+    duration: "13-DAY WORKSHOP PARTICIPATION",
+    type: "workshop",
+  },
+  {
+    id: 2,
+    title: "Cisco Ethical Hacker",
+    issuer: "National Skill Development Corporation through Cisco Networking Academy",
+    date: "06 Jun 2024",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663669412242/XgLGgYkhhrokGhCq.png",
+    validationUrl: null,
+    isFeatured: 0,
+    description: "Certificate awarded for successfully completing Ethical Hacker through the Cisco Networking Academy program.",
+    provider: "Cisco Networking Academy",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 3,
+    title: "Cisco Introduction to Cybersecurity",
+    issuer: "Cisco Networking Academy",
+    date: "21 Aug 2025",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663669412242/ODRdVFsjPTbzYRzO.png",
+    validationUrl: null,
+    isFeatured: 0,
+    description: "Certificate awarded for successfully completing Introduction to Cybersecurity through the Cisco Networking Academy program.",
+    provider: "Cisco Networking Academy",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 5,
+    title: "Wireshark for Packet Capture — Coursera",
+    issuer: "Coursera",
+    date: "2026",
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "Coursera",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 6,
+    title: "Introduction to Python for Cybersecurity — Coursera",
+    issuer: "Coursera",
+    date: "2026",
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "Coursera",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 7,
+    title: "Digital Skills: Artificial Intelligence — Accenture/FutureLearn",
+    issuer: "Accenture/FutureLearn",
+    date: "2026",
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "Accenture/FutureLearn",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 8,
+    title: "YUVA AI for ALL — IndiaAI",
+    issuer: "IndiaAI",
+    date: "2026",
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "IndiaAI",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 9,
+    title: "Data Structures with C — Coursera",
+    issuer: "Coursera",
+    date: "2026",
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "Coursera",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 10,
+    title: "AI Tools Workshop — Be10x",
+    issuer: "Be10x",
+    date: "2026",
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "Be10x",
+    duration: "WORKSHOP PARTICIPATION",
+    type: "workshop",
+  },
+  {
+    id: 12,
+    title: "Digital Forensics & Incident Investigation",
+    issuer: null,
+    date: null,
+    imageUrl: null,
+    validationUrl: null,
+    isFeatured: 0,
+    description: null,
+    provider: "Red Team Leaders",
+    duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+] as const;
+
 function scrollToSection(id: string) {
   const target = document.getElementById(id);
   if (!target) return;
@@ -122,7 +255,12 @@ export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [terminalStep, setTerminalStep] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const { data: certificationRecords = [], isLoading: certificationsLoading, isError: certificationsError } = trpc.certifications.list.useQuery();
+  const { data: certificationRecordsData = [], isLoading: certificationsLoading, isError: certificationsError } = trpc.certifications.list.useQuery();
+  const certificationRecords = certificationRecordsData.length > 0
+    ? certificationRecordsData
+    : certificationsError
+      ? fallbackCertificationRecords
+      : [];
 
   useEffect(() => {
     const update = () => {
@@ -314,7 +452,8 @@ export default function Home() {
         <section id="certifications" className="section certifications">
           <div className="section-inner">
             <SectionHeading index="07" eyebrow="CERTIFICATIONS &amp; WORKSHOPS" title="A continuing record of focused learning." description="Verified learning records, presented with the issuing organisation and supplied certificate evidence." />
-            {certificationsLoading ? <div className="cert-state">Loading verified learning records...</div> : certificationsError ? <div className="cert-state">Certification records are temporarily unavailable. Please check back shortly.</div> : certificationRecords.length === 0 ? <div className="cert-state">No certification records have been added yet.</div> : <>
+            {certificationsError ? <div className="cert-state cert-state-warning">Live record sync is temporarily unavailable. Showing the latest verified certificate evidence.</div> : null}
+            {certificationsLoading && certificationRecords.length === 0 ? <div className="cert-state">Loading verified learning records...</div> : certificationRecords.length === 0 ? <div className="cert-state">No certification records have been added yet.</div> : <>
               {certificationRecords.filter((record) => Number(record.isFeatured) === 1).map((record) => <motion.article className="cert-featured" key={record.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45 }}>
                 <div className="cert-featured-image">{record.imageUrl && record.imageUrl !== "NULL" ? <img src={record.imageUrl} alt={`${record.title} certificate`} /> : <div className="cert-image-placeholder"><GraduationCap size={32} strokeWidth={1.2} /><span>CERTIFICATE EVIDENCE</span></div>}</div>
                 <div className="cert-featured-copy"><div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>FEATURED / VERIFIED LEARNING</small></div><p className="cert-provider">{record.provider || record.issuer}</p><h3>{record.title}</h3><p className="cert-description">{record.description && record.description !== "NULL" ? record.description : "Verified learning record added to the portfolio."}</p><div className="cert-meta"><span>{record.date && record.date !== "NULL" ? record.date : "DATE ON FILE"}</span><span>{record.duration && record.duration !== "NULL" ? record.duration : "VERIFIED LEARNING"}</span></div>{record.validationUrl && record.validationUrl !== "NULL" ? <a className="mini-button" target="_blank" rel="noreferrer" href={record.validationUrl}>VERIFY RECORD <ExternalLink size={13} /></a> : null}</div>

@@ -179,6 +179,10 @@ button:not(:disabled), a[href] { cursor: pointer; }
 .cert-featured { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(300px,.85fr); margin-bottom: 1rem; border: 1px solid rgba(215,58,83,.55); background: linear-gradient(135deg, rgba(163,32,53,.11), rgba(244,240,232,.018)); overflow: hidden; }
 .cert-featured-image { min-height: 360px; padding: .8rem; display: flex; align-items: center; justify-content: center; background: #0d0c0d; border-right: 1px solid var(--line); }
 .cert-featured-image img { display: block; width: 100%; max-height: 460px; object-fit: contain; }
+.cert-image-link { position: relative; width: 100%; height: 100%; display: grid; place-items: center; color: var(--paper); text-decoration: none; }
+.cert-image-link > span { position: absolute; right: .65rem; bottom: .65rem; display: inline-flex; align-items: center; gap: .4rem; padding: .46rem .55rem; border: 1px solid rgba(244,240,232,.28); background: rgba(13,12,13,.9); font: .55rem "IBM Plex Mono", monospace; letter-spacing: .07em; opacity: 0; transform: translateY(4px); transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease; }
+.cert-image-link:hover > span, .cert-image-link:focus-visible > span { opacity: 1; transform: translateY(0); border-color: var(--signal-bright); }
+.cert-image-link:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: -2px; }
 .cert-image-placeholder { display: grid; place-items: center; gap: .8rem; color: var(--signal-pale); font: .62rem "IBM Plex Mono", monospace; letter-spacing: .1em; }
 .cert-featured-copy { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.35rem,3vw,2.6rem); }
 .cert-featured-copy .credential-stamp { display: flex; align-items: center; gap: .55rem; color: var(--signal-pale); }
@@ -193,8 +197,9 @@ button:not(:disabled), a[href] { cursor: pointer; }
 .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
 .cert-card { min-height: 260px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 1.05rem; border: 1px solid var(--line); background: rgba(244,240,232,.018); overflow: hidden; transition: border-color 180ms ease, background 180ms ease, transform 180ms cubic-bezier(.23,1,.32,1); }
 .cert-card:hover { border-color: rgba(215,58,83,.65); background: rgba(163,32,53,.07); transform: translateY(-3px); }
-.cert-card-image { margin: -1.05rem -1.05rem 1rem; aspect-ratio: 1.49; overflow: hidden; background: #0d0c0d; border-bottom: 1px solid var(--line); }
-.cert-card-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 240ms cubic-bezier(.23,1,.32,1); }
+.cert-card-image { position: relative; margin: -1.05rem -1.05rem 1rem; aspect-ratio: 1.49; overflow: hidden; background: #0d0c0d; border-bottom: 1px solid var(--line); }
+.cert-card-image .cert-image-link { position: absolute; inset: 0; }
+.cert-card-image img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: contain; transition: transform 240ms cubic-bezier(.23,1,.32,1); }
 .cert-card:hover .cert-card-image img { transform: scale(1.045); }
 .cert-card span { display: block; font: 500 .95rem/1.35 "Space Grotesk", sans-serif; letter-spacing: -.025em; }
 .cert-card-provider { margin: .5rem 0 .35rem; color: var(--muted); font-size: .72rem; line-height: 1.45; }
@@ -202,5 +207,7 @@ button:not(:disabled), a[href] { cursor: pointer; }
 .cert-card .credential-stamp { display: flex; align-items: center; justify-content: space-between; gap: .65rem; color: var(--muted); }
 .cert-card .credential-stamp small, .cert-featured-copy .credential-stamp small { font: .58rem "IBM Plex Mono", monospace; letter-spacing: .07em; }
 @media (max-width: 830px) { .cert-featured { grid-template-columns: 1fr; }.cert-featured-image { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }.cert-featured-image img { max-height: 390px; } }
+@media (max-width: 830px) { .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 530px) { .cert-grid { grid-template-columns: 1fr; } }
 
 .cert-state-warning { border-color: rgba(215,58,83,.55); color: var(--signal-pale); background: rgba(163,32,53,.06); }

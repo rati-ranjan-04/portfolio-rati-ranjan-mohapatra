@@ -129,26 +129,26 @@ const fallbackCertificationRecords = [
     id: 7,
     title: "Digital Skills: Artificial Intelligence — Accenture/FutureLearn",
     issuer: "Accenture/FutureLearn",
-    date: "2026",
-    imageUrl: null,
+    date: "09 Jun 2026",
+    imageUrl: "/deploy-assets/futurelearn-accenture-digital-skills-ai-certificate.png",
     validationUrl: null,
     isFeatured: 0,
-    description: null,
+    description: "Completed the Accenture Digital Skills: Artificial Intelligence course through FutureLearn.",
     provider: "Accenture/FutureLearn",
-    duration: "VERIFIED CERTIFICATION",
+    duration: "3-WEEK ONLINE COURSE",
     type: "certificate",
   },
   {
     id: 8,
     title: "YUVA AI for ALL — IndiaAI",
     issuer: "IndiaAI",
-    date: "2026",
-    imageUrl: null,
+    date: "19 Apr 2026",
+    imageUrl: "/deploy-assets/indiaai-yuva-ai-for-all-certificate.png",
     validationUrl: null,
     isFeatured: 0,
-    description: null,
+    description: "Completed the YUVA AI for ALL online course authorised by IndiaAI and offered through Coursera.",
     provider: "IndiaAI",
-    duration: "VERIFIED CERTIFICATION",
+    duration: "COURSE CERTIFICATE",
     type: "certificate",
   },
   {
@@ -180,14 +180,27 @@ const fallbackCertificationRecords = [
   {
     id: 12,
     title: "Digital Forensics & Incident Investigation",
-    issuer: null,
-    date: null,
-    imageUrl: null,
-    validationUrl: null,
+    issuer: "Red Team Leaders",
+    date: "12 Apr 2026",
+    imageUrl: "/deploy-assets/red-team-leaders-digital-forensics-certificate.jpg",
+    validationUrl: "https://courses.redteamleaders.com/completion/21303de82fe53ab5",
     isFeatured: 0,
-    description: null,
+    description: "Completed focused training in digital forensics and incident investigation.",
     provider: "Red Team Leaders",
     duration: "VERIFIED CERTIFICATION",
+    type: "certificate",
+  },
+  {
+    id: 13,
+    title: "Cyber Job Simulation",
+    issuer: "Deloitte",
+    date: "28 Jun 2025",
+    imageUrl: "/deploy-assets/deloitte-cyber-job-simulation-certificate.png",
+    validationUrl: null,
+    isFeatured: 0,
+    description: "Completed Deloitte's Cyber Job Simulation, including practical tasks in cybersecurity.",
+    provider: "Deloitte / Forage",
+    duration: "JOB SIMULATION",
     type: "certificate",
   },
 ] as const;
@@ -257,10 +270,27 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { data: certificationRecordsData = [], isLoading: certificationsLoading, isError: certificationsError } = trpc.certifications.list.useQuery();
   const certificationRecords = certificationRecordsData.length > 0
-    ? certificationRecordsData
+    ? [
+        ...certificationRecordsData.map((record) => {
+          const localRecord = fallbackCertificationRecords.find((candidate) => candidate.title === record.title);
+          return localRecord?.imageUrl?.startsWith("/deploy-assets/")
+            ? {
+                ...record,
+                ...localRecord,
+                id: record.id,
+                validationUrl: localRecord.validationUrl || record.validationUrl,
+              }
+            : record;
+        }),
+        ...fallbackCertificationRecords.filter(
+          (localRecord) => !certificationRecordsData.some((record) => record.title === localRecord.title),
+        ),
+      ]
     : certificationsError
       ? fallbackCertificationRecords
-      : [];
+      : certificationsLoading
+        ? []
+        : fallbackCertificationRecords;
 
   useEffect(() => {
     const update = () => {
@@ -454,12 +484,12 @@ export default function Home() {
             <SectionHeading index="07" eyebrow="CERTIFICATIONS &amp; WORKSHOPS" title="A continuing record of focused learning." description="Verified learning records, presented with the issuing organisation and supplied certificate evidence." />
             {certificationsError ? <div className="cert-state cert-state-warning">Live record sync is temporarily unavailable. Showing the latest verified certificate evidence.</div> : null}
             {certificationsLoading && certificationRecords.length === 0 ? <div className="cert-state">Loading verified learning records...</div> : certificationRecords.length === 0 ? <div className="cert-state">No certification records have been added yet.</div> : <>
-              {certificationRecords.filter((record) => Number(record.isFeatured) === 1).map((record) => <motion.article className="cert-featured" key={record.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45 }}>
-                <div className="cert-featured-image">{record.imageUrl && record.imageUrl !== "NULL" ? <img src={record.imageUrl} alt={`${record.title} certificate`} /> : <div className="cert-image-placeholder"><GraduationCap size={32} strokeWidth={1.2} /><span>CERTIFICATE EVIDENCE</span></div>}</div>
+              {certificationRecords.filter((record) => Number(record.isFeatured) === 1).map((record) => <motion.article className="cert-featured" key={`${record.id}-${record.title}`} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45 }}>
+                <div className="cert-featured-image">{record.imageUrl && record.imageUrl !== "NULL" ? <a className="cert-image-link" href={record.imageUrl} target="_blank" rel="noreferrer" aria-label={`View ${record.title} certificate`}><img src={record.imageUrl} alt={`${record.title} certificate`} /><span>VIEW CERTIFICATE <ExternalLink size={12} /></span></a> : <div className="cert-image-placeholder"><GraduationCap size={32} strokeWidth={1.2} /><span>CERTIFICATE EVIDENCE</span></div>}</div>
                 <div className="cert-featured-copy"><div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>FEATURED / VERIFIED LEARNING</small></div><p className="cert-provider">{record.provider || record.issuer}</p><h3>{record.title}</h3><p className="cert-description">{record.description && record.description !== "NULL" ? record.description : "Verified learning record added to the portfolio."}</p><div className="cert-meta"><span>{record.date && record.date !== "NULL" ? record.date : "DATE ON FILE"}</span><span>{record.duration && record.duration !== "NULL" ? record.duration : "VERIFIED LEARNING"}</span></div>{record.validationUrl && record.validationUrl !== "NULL" ? <a className="mini-button" target="_blank" rel="noreferrer" href={record.validationUrl}>VERIFY RECORD <ExternalLink size={13} /></a> : null}</div>
               </motion.article>)}
-              <div className="cert-grid">{certificationRecords.filter((record) => Number(record.isFeatured) !== 1).map((record, index) => <motion.article className="cert-card" key={record.id} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: (index % 3) * .04, duration: .38 }}>
-                {record.imageUrl && record.imageUrl !== "NULL" ? <div className="cert-card-image"><img src={record.imageUrl} alt={`${record.title} certificate`} /></div> : null}<div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>{record.type === "workshop" ? "WORKSHOP" : "VERIFIED LEARNING"} / 0{index + 1}</small></div><div><span>{record.title}</span><p className="cert-card-provider">{record.provider || record.issuer}</p>{record.date && record.date !== "NULL" ? <small className="cert-card-date">COMPLETED / {record.date}</small> : null}</div>
+              <div className="cert-grid">{certificationRecords.filter((record) => Number(record.isFeatured) !== 1).map((record, index) => <motion.article className="cert-card" key={`${record.id}-${record.title}`} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: (index % 3) * .04, duration: .38 }}>
+                {record.imageUrl && record.imageUrl !== "NULL" ? <div className="cert-card-image"><a className="cert-image-link" href={record.imageUrl} target="_blank" rel="noreferrer" aria-label={`View ${record.title} certificate`}><img src={record.imageUrl} alt={`${record.title} certificate`} /><span>VIEW CERTIFICATE <ExternalLink size={12} /></span></a></div> : null}<div className="credential-stamp"><GraduationCap size={19} strokeWidth={1.45} /><small>{record.type === "workshop" ? "WORKSHOP" : "VERIFIED LEARNING"} / {String(index + 1).padStart(2, "0")}</small></div><div><span>{record.title}</span><p className="cert-card-provider">{record.provider || record.issuer}</p>{record.date && record.date !== "NULL" ? <small className="cert-card-date">COMPLETED / {record.date}</small> : null}</div>
               </motion.article>)}</div>
             </>}
           </div>
